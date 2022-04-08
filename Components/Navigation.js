@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "../Pages/Home";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PokemonDetails from "../Pages/PokemonDetails";
+import PokemonSearch from "../Pages/Recherche";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -16,6 +18,7 @@ function MyTabs() {
         <Stack.Navigator>
             <Stack.Screen name="Pokédex" component={Home} />
             <Stack.Screen name="Détails du pokemon" component={PokemonDetails} />
+            <Stack.Screen name="Recherche" component={PokemonSearch} />
         </Stack.Navigator>
     );
 }
@@ -31,25 +34,40 @@ export default function Navigation() {
                     component={PokemonStack}
                     styles={styles.header}
                     options={{
-                        headerShown:false
+                        headerShown:false,
+                        tabBarIcon: ({tintColor}) => (
+                            <Icon name="pokeball" size={25}/>
+                        )
                     }}
                 />
                 <Tab.Screen
                     name="RecherchePokemon"
-                    component={PokemonStack}
+                    component={PokemonSearch}
                     options={{
-                        title: "Recherche",
-                        headerTintColor: "white",
-                        headerStyle: { backgroundColor: "red" },
+                        headerShown: true,
+                        tabBarIcon: ({tintColor}) => (
+                            <Icon name="search-web" size={25}/>
+                        )
                     }}
                 />
                 <Tab.Screen
                     name="Teams"
                     component={PokemonStack}
                     options={{
-                        title: "Teams",
-                        headerTintColor: "white",
-                        headerStyle: { backgroundColor: "red" },
+                        headerShown: false,
+                        tabBarIcon: ({tintColor}) => (
+                            <Icon name="account-multiple" size={25}/>
+                        )
+                    }}
+                />
+                <Tab.Screen
+                    name="Params"
+                    component={PokemonStack}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({tintColor}) => (
+                            <Icon name="settings-helper" size={25}/>
+                        )
                     }}
                 />
             </Tab.Navigator>

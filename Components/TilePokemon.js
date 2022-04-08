@@ -20,7 +20,10 @@ export default function TilePokemon(props) {
     }, [])
 
     return (
-            <TouchableOpacity onPress={() => navigation.navigate('Détails du pokemon')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Détails du pokemon', {
+                pokemonDatas: pokemonDatas
+                })
+            }>
                 <View>
                     {
                         pokemonImage ?
