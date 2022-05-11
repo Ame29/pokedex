@@ -1,6 +1,6 @@
-import {View, Text, Image, StyleSheet, FlatList} from "react-native";
-import React, {useEffect} from "react";
-import getPokemons from "../Api/PokeApi";
+import {View, Text, Image, StyleSheet, FlatList, Button, Pressable} from "react-native";
+import React, {useEffect, useState} from "react";
+import {storeData, retrieveData, eraseData} from "../utils/localStorage";
 
 export default function PokemonDetails(props){
 
@@ -16,9 +16,35 @@ export default function PokemonDetails(props){
     const types = [];
     const skills = [];
 
+    const [team, setTeam] = useState([]);
+
     typesPokemon.forEach((data) => {
         types.push(<Text style={{textAlign:"center"}} key={data.type.name}>{data.type.name}</Text>)
     })
+
+
+    const ajouterEquipe = () => {
+        let myTeam = [datas, ...team];
+        setTeam(myTeam);
+        storeData("equipe",JSON.stringify(myTeam))
+    }
+
+    useEffect(() => {
+        retrieveData("equipe").then((res) => {
+            if (res){
+                let test = JSON.parse(res);
+                setTeam(test);
+            }
+        })
+    }, [])
+
+    const supprimerEquipe = () => {
+        let myTeam = team.filter((pokemon) => {
+            return(pokemon.name != datas.name);
+        });
+        setTeam(myTeam);
+        storeData("equipe",JSON.stringify(myTeam))
+    }
 
    skillsPokemon.forEach((data) => {
         skills.push(<Text style={{textAlign:"center"}} key={data.ability.name}>{data.ability.name}</Text>)
@@ -46,6 +72,30 @@ export default function PokemonDetails(props){
                     <Text style={styles.titre}>Abilities</Text>
                     {skills}
                 </View>
+            </View>
+            <View>
+                {team.find((pokemon) => pokemon.name == datas.name) ==
+                undefined ? (
+                    team.length >= 6 ? (
+                        <Text style={styles.warning}>
+                            6 pokémons sont déjà présents dans mon équipe !
+                        </Text>
+                    ) : (
+                            <Button
+                                onPress={() => ajouterEquipe()} // tj passer par une fonction anonyme quand on trigger un event
+                                title="Ajouter à mon équipe"
+                                color="green"
+                                accessibilityLabel="Bouton permettant d'ajouter un pokémon dans votre équipe"
+                            />
+                    )
+                ) : (
+                        <Button
+                            onPress={() => supprimerEquipe()}
+                            title="Supprimer de l'équipe"
+                            color="red"
+                            accessibilityLabel="To remove a pokemon from your team"
+                        />
+                )}
             </View>
         </View>
     )
