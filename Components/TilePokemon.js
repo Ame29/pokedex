@@ -14,7 +14,7 @@ export default function TilePokemon(props) {
         if (pokemonDatas.length === 0){
             getPokemons(url).then(data => {
                 setPokemonDatas(data)
-                setPokemonImage(data.sprites.front_default);
+                setPokemonImage(data.sprites.other["official-artwork"].front_default);
             })
         }
     }, [])

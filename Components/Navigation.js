@@ -1,7 +1,5 @@
-// In App.js in a new project
-
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "../Pages/Home";
@@ -9,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PokemonDetails from "../Pages/PokemonDetails";
 import PokemonSearch from "../Pages/Recherche";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Team from "../Pages/Teams";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,6 +18,7 @@ function MyTabs() {
             <Stack.Screen name="Pokédex" component={Home} />
             <Stack.Screen name="Détails du pokemon" component={PokemonDetails} />
             <Stack.Screen name="Recherche" component={PokemonSearch} />
+            <Stack.Screen name="Mon équipe" component={Team} />
         </Stack.Navigator>
     );
 }
@@ -41,7 +41,7 @@ export default function Navigation() {
                     }}
                 />
                 <Tab.Screen
-                    name="RecherchePokemon"
+                    name="Rechercher un pokémon"
                     component={PokemonSearch}
                     options={{
                         headerShown: true,
@@ -51,17 +51,16 @@ export default function Navigation() {
                     }}
                 />
                 <Tab.Screen
-                    name="Teams"
-                    component={PokemonStack}
+                    name="Mon équipe"
+                    component={Team}
                     options={{
-                        headerShown: false,
                         tabBarIcon: ({tintColor}) => (
                             <Icon name="account-multiple" size={25}/>
                         )
                     }}
                 />
                 <Tab.Screen
-                    name="Params"
+                    name="Paramètres"
                     component={PokemonStack}
                     options={{
                         headerShown: false,
