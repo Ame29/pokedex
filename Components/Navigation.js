@@ -8,6 +8,7 @@ import PokemonDetails from "../Pages/PokemonDetails";
 import PokemonSearch from "../Pages/Recherche";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Team from "../Pages/Teams";
+import Params from "../Pages/Params";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,6 +20,7 @@ function MyTabs() {
             <Stack.Screen name="Détails du pokemon" component={PokemonDetails} />
             <Stack.Screen name="Recherche" component={PokemonSearch} />
             <Stack.Screen name="Mon équipe" component={Team} />
+            <Stack.Screen name="Paramètres de l'application" component={Params} />
         </Stack.Navigator>
     );
 }
@@ -61,9 +63,8 @@ export default function Navigation() {
                 />
                 <Tab.Screen
                     name="Paramètres"
-                    component={PokemonStack}
+                    component={Params}
                     options={{
-                        headerShown: false,
                         tabBarIcon: ({tintColor}) => (
                             <Icon name="settings-helper" size={25}/>
                         )

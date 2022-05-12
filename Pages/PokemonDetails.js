@@ -85,7 +85,6 @@ export default function PokemonDetails(props){
                                 onPress={() => ajouterEquipe()} // tj passer par une fonction anonyme quand on trigger un event
                                 title="Ajouter à mon équipe"
                                 color="green"
-                                accessibilityLabel="Bouton permettant d'ajouter un pokémon dans votre équipe"
                             />
                     )
                 ) : (
@@ -93,7 +92,6 @@ export default function PokemonDetails(props){
                             onPress={() => supprimerEquipe()}
                             title="Supprimer de l'équipe"
                             color="red"
-                            accessibilityLabel="To remove a pokemon from your team"
                         />
                 )}
             </View>
