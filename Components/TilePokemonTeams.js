@@ -4,7 +4,7 @@ import getPokemons from "../Api/PokeApi";
 import React, {useEffect, useState} from "react";
 import {TouchableOpacity} from "react-native";
 
-export default function TilePokemon(props) {
+export default function TilePokemonTeams(props) {
     const {navigation, url, name, ...restProps} = props;
 
     const [pokemonDatas,setPokemonDatas] = useState([]);
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     container: {
         display: "flex",
         justifyContent: "space-between",
-        width: "100%",
+        width: "33%",
         height: 150,
         padding: 5,
         marginBottom: 10,

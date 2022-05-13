@@ -19,6 +19,7 @@ const chercherPokemon = () => {
 
     return (
             <SafeAreaView>
+                <Text style={styles.titre}>Bienvenue sur la page de recherche</Text>
                 <TextInput
                     style={styles.input}
                     value={text}
@@ -29,15 +30,15 @@ const chercherPokemon = () => {
                 {(pokemonCherche === undefined) ?
                     <Text style={styles.center}>Pas de Pokémon trouvé ! </Text> :
                     (pokemonCherche.id) ?
-                        <TouchableOpacity onPress={() => navigation.navigate('Détails du pokemon', {
+                        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Détails du pokemon', {
                             pokemonDatas: pokemonCherche
                         })
                         }>
-                            <View>
-                                <Image style={styles.image} source={{uri: pokemonCherche.sprites.front_default}}/>
+                            <View style={styles.containerImage}>
+                                <Image style={styles.image} source={{uri: pokemonCherche.sprites.other["official-artwork"].front_default}}/>
                             </View>
-                            <View>
-                                <Text style={styles.center}>{pokemonCherche.name}</Text>
+                            <View style={styles.containerInfo}>
+                                <Text style={styles.text}>{pokemonCherche.name}</Text>
                             </View>
 
                         </TouchableOpacity> :
@@ -55,20 +56,55 @@ const chercherPokemon = () => {
             padding: 10,
         },
         container: {
-            flex: 1,
-            backgroundColor: '#fff',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingTop: 22
+            display: "flex",
+            justifyContent: "space-between",
+            width: "60%",
+            height: 200,
+            padding: 5,
+            marginBottom: 10,
+            borderRadius: 5,
+            marginLeft:"auto",
+            marginRight:"auto",
+        },
+        containerInfo: {
+            display: "flex",
+            justifyContent: "space-between",
+        },
+        text: {
+            textAlign: "center",
+            fontSize:40,
+            textTransform:"capitalize",
+            marginTop:10
+        },
+        containerImage: {
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+            borderRadius: 10,
+            elevation: 10,
+            shadowColor: 'red',
+
         },
         image: {
-            width:150,
-            height:150,
-            marginLeft:120
+            width: 200,
+            height: 200
         },
         center:{
             textAlign:"center",
-            textTransform:"capitalize"
-        }
+            textTransform:"none",
+            fontWeight:"bold",
+            fontSize:25,
+            marginTop:25
+        },
+        titre: {
+            fontSize:25,
+            textAlign:"center",
+            fontWeight:"bold",
+            marginTop:10,
+            marginBottom:20
+        },
     });
 
